@@ -98,3 +98,6 @@ setInterval(refreshUploadLabels,60000);document.addEventListener("visibilitychan
 
 // Native selects can retain a keyboard-style ring after a touchscreen choice.
 for(const id of ['sort','viewfilter']){const select=$(id);select.addEventListener('pointerdown',()=>select.setAttribute('data-pointer-focus',''));select.addEventListener('keydown',()=>select.removeAttribute('data-pointer-focus'));select.addEventListener('blur',()=>select.removeAttribute('data-pointer-focus'));}
+
+window.addEventListener("mozes-history-export",()=>save());
+window.addEventListener("mozes-history-imported",event=>{history=event.detail;if(active&&player){player.pauseVideo?.();player.seekTo?.(positionFor(history[active.id]),true);}render();});
